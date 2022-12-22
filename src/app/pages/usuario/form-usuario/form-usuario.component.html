@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="modal-header">
+    <h4 class="modal-title" *ngIf="!usuario"> Agregar Usuario<i class="fa-solid fa-plus"></i> </h4>
+    <h4 class="modal-title" *ngIf="usuario"> Edicion Usuario<i class="fa-solid fa-pencil"></i> </h4>
+  </div>
+
+  <form [formGroup]="form">
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-12">
+          
+          <label class="form-label"> Identificacion </label>
+          <input type="text" class="form-control" pattern="\d*" maxlength="10" formControlName="identification" >
+
+          <label class="form-label"> Nombre </label>
+          <input type="text" class="form-control" maxlength="100" placeholder="Nombre" formControlName="userName">
+
+          <label class="form-label"> Telefono </label>
+          <input type="text" class="form-control" pattern="\d*" maxlength="10" placeholder="Telefono" formControlName="phone">
+
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-secondary" (click)="closeModal()"> Cancelar </button>
+      <button type="submit" class="btn btn-primary" *ngIf="!usuario" (click)="operate()" [disabled]="form.invalid">
+        Guardar </button>
+      <button type="submit" class="btn btn-primary" *ngIf="usuario" (click)="operate()" [disabled]="form.invalid">
+        Actualizar </button>
+    </div>
+  </form>
+</div>
